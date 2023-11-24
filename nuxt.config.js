@@ -29,7 +29,18 @@ export default {
 
   // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
   buildModules: [
+    // Simple usage
+    '@nuxtjs/vuetify',
+
+    // With options
+    ['@nuxtjs/vuetify', { /* module options */ }]
   ],
+
+  vuetify: {
+    theme: {
+      dark: false, // Set this to true for dark theme, false for light theme
+    },
+  },
 
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [

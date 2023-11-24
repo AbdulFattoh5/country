@@ -1,11 +1,12 @@
 <template>
-  <div class="container">
+  <v-container>
     <div class="sort">
-      <input
+      <v-text-field
         @input="filterCountries"
         type="text"
         v-model="search"
-        placeholder="Search for a city"
+        placeholder="Search for a country"
+        width="400px"
       />
       <select name="select" v-model="filter" @change="filterCountries">
         <option value="">Filter by region</option>
@@ -22,9 +23,10 @@
         :key="i"
         :country="country"
         @click="showCountryDetails(country)"
+        :isDarkMode="isDarkMode"
       />
     </div>
-  </div>
+  </v-container>
 </template>
 
 <script>
@@ -37,6 +39,9 @@ export default {
     Item,
     Itemdetail,
   },
+  props:{
+    isDarkMode: Boolean,
+  },
   data() {
     return {
       allcountries: [],
@@ -47,7 +52,7 @@ export default {
     };
   },
   methods: {
-    async asyncData() {
+    async fetchData() {
       try {
         const res = await axios.get("https://restcountries.com/v3.1/all");
         this.allcountries = res.data;
@@ -81,30 +86,51 @@ export default {
       this.countries = filtered; // Update the countries data
     },
     showCountryDetails(country) {
+      console.log("Entering showCountryDetails");
+      console.log("Router:", this.$router);
+      console.log("Country data to be passed:", country);
       this.selectedCountry = country;
       this.$router.push({
         name: "CountryDetailPage",
         params: { name: country.name.common },
-        query: { selectedCountry: JSON.stringify(country) }, // Pass country data as a query parameter
+        query: { selectedCountry: JSON.stringify(country) },
       });
     },
+
     hideCountryDetails() {
       this.selectedCountry = null;
     },
   },
   mounted() {
-    this.asyncData();
+    this.fetchData();
   },
 };
 </script>
 
 <style>
+.v-input {
+  max-width: 400px !important;
+}
+
 .items__wrap {
   display: flex;
   align-items: center;
   justify-content: space-evenly;
   flex-wrap: wrap;
   gap: 10px;
+}
+
+.darkMode {
+  background: rgb(32, 32, 32); /* Dark mode background color */
+  color: white; /* Dark mode text color */
+}
+
+select{
+  background: rgb(147, 147, 147);
+  font-family: sans-serif;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
 }
 
 .container {

@@ -21,7 +21,5 @@ export default {
 </script>
 
 <style>
-body {
-  background: rgb(248, 248, 248);
-}
+
 </style>

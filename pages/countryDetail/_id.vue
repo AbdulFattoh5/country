@@ -18,50 +18,32 @@ export default {
     };
   },
   methods: {
-    hideCountryDetails() {
-      this.selectedCountry = null;
-      this.$router.push({ name: "index" });
-    },
-    async fetchCountryDetailsByName(countryName) {
+    async asyncData() {
       try {
+        const countryName = this.$route.params.id;
         const response = await fetch(
           `https://restcountries.com/v3.1/name/${countryName}`
         );
         const data = await response.json();
         console.log("API Response: ", data);
         if (response.ok) {
-          // Assuming the data structure from the API
           const countryDetails = data[0];
-          return countryDetails;
-        } else {
-          throw new Error("Failed to fetch country details");
-        }
-      } catch (error) {
-        console.error("Error fetching country details:", error);
-        this.$emit("error", error.message);
-        throw error;
-      }
-    },
-    async asyncData({ params }) {
-      try {
-        const countryName = params.name;
-        const response = await fetch(
-          `https://restcountries.com/v3.1/name/${countryName}`
-        );
-        const data = await response.json();
-
-        if (response.ok) {
-          const countryDetails = data[0];
+          this.selectedCountry = countryDetails;
           return { selectedCountry: countryDetails };
         } else {
           throw new Error("Failed to fetch country details");
         }
       } catch (error) {
         console.error("Error fetching country details:", error);
-        // Handle the error appropriately
-        throw error;
+        return { error: error.message };
       }
     },
+    hideCountryDetails() {
+      this.$router.push({ name: "index" });
+    },
   },
+  mounted(){
+    this.asyncData()
+  }
 };
 </script>
