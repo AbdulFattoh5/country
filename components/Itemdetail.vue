@@ -57,6 +57,7 @@ export default {
 
 <style>
 .country__btn{
+  font-family: sans-serif;
   background-color: #fff;
   border: 0;
   border-radius: 6px;
@@ -65,7 +66,7 @@ export default {
   font-size: 16px;
   font-weight: 300;
   line-height: 20px;
-  margin-bottom: 90px;
+  margin: 10px 0 90px 0;
   padding: 10px 32px 10px 29px;
   display: flex;
   align-items: center;
@@ -77,6 +78,7 @@ export default {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  flex-wrap: wrap;
 }
 
 .country__flag {
@@ -84,6 +86,13 @@ export default {
   width: 560px;
   border-radius: 10px;
   box-shadow: 0 0 14px 4px rgba(0, 0, 0, 0.029);
+}
+
+@media screen and (max-width: 1000px){
+  .country__flag{
+    height: 100%;
+    width: 100%;
+  }
 }
 
 .country__title {
@@ -99,10 +108,12 @@ export default {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 10px;
 }
 
 .country__data{
   font-family: sans-serif;
+  margin-bottom: 5px;
 }
 
 .country__borders{
@@ -116,11 +127,12 @@ export default {
 }
 
 .country__borders-item{
-  border: 2px solid gray;
+  border: 2px solid rgb(255, 255, 255);
   border-radius: 8px;
   display: inline-block;
   padding: 5px 10px;
   margin-right: 5px;
+  font-family: sans-serif;
 }
 
 </style>

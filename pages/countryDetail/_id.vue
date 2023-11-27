@@ -27,7 +27,7 @@ export default {
         const data = await response.json();
         console.log("API Response: ", data);
         if (response.ok) {
-          const countryDetails = data[0];
+          const countryDetails = data.length > 1 ? data[1] : data[0];
           this.selectedCountry = countryDetails;
           return { selectedCountry: countryDetails };
         } else {
@@ -42,8 +42,8 @@ export default {
       this.$router.push({ name: "index" });
     },
   },
-  mounted(){
-    this.asyncData()
-  }
+  mounted() {
+    this.asyncData();
+  },
 };
 </script>

@@ -23,7 +23,6 @@
         :key="i"
         :country="country"
         @click="showCountryDetails(country)"
-        :isDarkMode="isDarkMode"
       />
     </div>
   </v-container>
@@ -38,9 +37,6 @@ export default {
   components: {
     Item,
     Itemdetail,
-  },
-  props:{
-    isDarkMode: Boolean,
   },
   data() {
     return {
@@ -96,7 +92,6 @@ export default {
         query: { selectedCountry: JSON.stringify(country) },
       });
     },
-
     hideCountryDetails() {
       this.selectedCountry = null;
     },
@@ -121,11 +116,11 @@ export default {
 }
 
 .darkMode {
-  background: rgb(32, 32, 32); /* Dark mode background color */
-  color: white; /* Dark mode text color */
+  background: rgb(32, 32, 32);
+  color: white;
 }
 
-select{
+select {
   background: rgb(147, 147, 147);
   font-family: sans-serif;
   padding: 5px 10px;
@@ -146,5 +141,15 @@ select{
   align-items: center;
   justify-content: space-between;
   margin-bottom: 40px;
+}
+
+@media screen and (max-width: 570px) {
+  .v-input {
+    max-width: 150px !important;
+    color: white;
+  }
+  .header__logo{
+    font-size: 20px;
+  }
 }
 </style>

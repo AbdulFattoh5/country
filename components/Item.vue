@@ -1,8 +1,8 @@
 <template>
-  <div class="item" :class="{ 'isDarkMode': isDarkMode }">
+  <div class="item" :class="{ darkMode: dark }">
     <nuxt-link :to="`/countryDetail/${country.name.common}`">
       <img :src="country?.flags?.png" alt="" class="item__img" />
-      <div class="item__desc">
+      <div class="item__desc" :class="{ darkMode: dark }">
         <h3 class="item__title">{{ country?.name?.common }}</h3>
         <p class="item__p">
           <span class="item__bold">Population: </span>{{ country?.population }}
@@ -24,16 +24,42 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
 export default {
   name: "Item",
   props: {
     country: Object,
-    isDarkMode: Boolean,
+  },
+  data() {
+    return {
+      dark: false,
+    };
+  },
+  computed: {
+    ...mapGetters({
+      isDarkModeState: "isDarkMode",
+    }),
+  },
+  watch: {
+    isDarkModeState(val) {
+      this.dark = val;
+    },
+  },
+  mounted() {
+    const storedDarkMode = window.localStorage.getItem("darkMode");
+    console.log(storedDarkMode);
+    if (storedDarkMode !== null) {
+      this.dark = storedDarkMode === "true";
+    }
   },
 };
 </script>
 
 <style>
+* {
+  text-decoration: none;
+}
+
 .item {
   background: rgb(167, 167, 167);
   max-width: 264px;
@@ -42,11 +68,6 @@ export default {
   font-family: sans-serif;
   cursor: pointer;
   transition: 0.3s;
-}
-
-.item.isDarkMode {
-  background: rgb(32, 32, 32); /* Dark mode background color */
-  color: white; /* Dark mode text color */
 }
 
 .item:hover {
@@ -62,22 +83,19 @@ export default {
 
 .item__desc {
   padding: 0 24px 37px;
+  color: black;
+  transition: 0.3s;
 }
 
 .item__title {
   margin-bottom: 16px;
-  color: black;
-  text-decoration: none;
 }
 
 .item__p {
   margin-bottom: 8px;
-  color: black;
-  text-decoration: none;
 }
 
 .item__bold {
   font-weight: 600;
-  color: black;
 }
 </style>
