@@ -82,8 +82,8 @@ export default {
 }
 
 .country__flag {
-  height: 401px;
-  width: 560px;
+  height: 400px;
+  width: 540px;
   border-radius: 10px;
   box-shadow: 0 0 14px 4px rgba(0, 0, 0, 0.029);
 }
@@ -92,6 +92,10 @@ export default {
   .country__flag{
     height: 100%;
     width: 100%;
+  }
+
+  .country__wrap{
+    justify-content: center;
   }
 }
 
@@ -119,6 +123,7 @@ export default {
 .country__borders{
   display: flex;
   align-items: center;
+  flex-wrap: wrap;
 }
 .country__borders-h{
   font-family: sans-serif;

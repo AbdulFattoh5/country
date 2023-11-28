@@ -1,5 +1,5 @@
 <template>
-  <div class="item" :class="{ darkMode: dark }">
+  <div class="item">
     <nuxt-link :to="`/countryDetail/${country.name.common}`">
       <img :src="country?.flags?.png" alt="" class="item__img" />
       <div class="item__desc" :class="{ darkMode: dark }">
@@ -61,10 +61,9 @@ export default {
 }
 
 .item {
-  background: rgb(167, 167, 167);
+  background: white;
   max-width: 264px;
   width: 100%;
-  height: 350px;
   font-family: sans-serif;
   cursor: pointer;
   transition: 0.3s;
@@ -76,13 +75,13 @@ export default {
 
 .item__img {
   width: 100%;
-  margin-bottom: 24px;
+  margin-bottom: -4px;
   height: 140px;
   object-fit: cover;
 }
 
 .item__desc {
-  padding: 0 24px 37px;
+  padding: 26px 24px;
   color: black;
   transition: 0.3s;
 }
