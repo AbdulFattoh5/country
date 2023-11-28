@@ -3,7 +3,7 @@
     <v-container>
       <div class="header__wrap">
         <h1 class="header__logo">Where in the world?</h1>
-        <v-btn class="header__btn" @click="toggleDarkMode">
+        <v-btn class="header__btn" @click="toggleDarkMode" :class="{ darkMode: isDarkMode }">
           <v-img
             :src="
               isDarkMode
@@ -61,7 +61,7 @@ export default {
 }
 
 .darkMode {
-  background: rgb(32, 32, 32);
+  background: rgb(32, 32, 32) !important;
   color: white !important;
 }
 

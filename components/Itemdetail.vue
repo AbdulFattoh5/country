@@ -1,6 +1,8 @@
 <template>
   <v-container class="country">
-    <v-btn class="country__btn" @click="goBack"><svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><g id="call-made"><path id="Shape" fill-rule="evenodd" clip-rule="evenodd" d="M6.46447 4.10744L7.64298 5.28596L3.75389 9.17504L18.6031 9.17504L18.6031 10.825L3.75389 10.825L7.64298 14.714L6.46447 15.8926L0.57191 10L6.46447 4.10744Z"></path></g></svg>Back</v-btn>
+    <v-btn class="country__btn" @click="goBack">
+      <svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><g id="call-made"><path id="Shape" fill-rule="evenodd" clip-rule="evenodd" d="M6.46447 4.10744L7.64298 5.28596L3.75389 9.17504L18.6031 9.17504L18.6031 10.825L3.75389 10.825L7.64298 14.714L6.46447 15.8926L0.57191 10L6.46447 4.10744Z"></path></g></svg>Back
+    </v-btn>
     <div class="country__wrap">
       <img :src="country?.flags?.png" alt="" class="country__flag" />
       <div class="country__desc">
@@ -13,7 +15,8 @@
             <p class="country__data"><strong>Population: </strong> {{country?.population}}</p>
             <p class="country__data"><strong>Region: </strong> {{country?.region}}</p>
             <p class="country__data"><strong>Sub Region: </strong> {{country?.subregion}}</p>
-            <p class="country__data"><strong>Capital: </strong> {{country?.capital[0]}}</p>
+            <p class="country__data" v-if="country?.capital"><strong>Capital: </strong> {{country?.capital[0]}}</p>
+            <p class="country__data" v-else><strong>Capital: </strong>N/A</p>
           </div>
           <div class="country__data-r">
             <p class="country__data"><strong>Top level domain: </strong> {{country?.tld[0]}}</p>
@@ -83,20 +86,10 @@ export default {
 
 .country__flag {
   height: 400px;
-  width: 540px;
+  max-width: 540px;
+  width: 100%;
   border-radius: 10px;
   box-shadow: 0 0 14px 4px rgba(0, 0, 0, 0.029);
-}
-
-@media screen and (max-width: 1000px){
-  .country__flag{
-    height: 100%;
-    width: 100%;
-  }
-
-  .country__wrap{
-    justify-content: center;
-  }
 }
 
 .country__title {
@@ -112,6 +105,7 @@ export default {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  flex-wrap: wrap;
   gap: 10px;
 }
 
@@ -140,4 +134,14 @@ export default {
   font-family: sans-serif;
 }
 
+@media screen and (max-width: 1000px){
+  .country__flag{
+    height: 100%;
+    width: 100%;
+  }
+
+  .country__wrap{
+    justify-content: center;
+  }
+}
 </style>
