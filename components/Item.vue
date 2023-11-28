@@ -82,7 +82,6 @@ export default {
 
 .item__desc {
   padding: 26px 24px;
-  color: black;
   transition: 0.3s;
 }
 

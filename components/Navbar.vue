@@ -57,7 +57,7 @@ export default {
   background: rgb(167, 167, 167);
   padding: 10px 0;
   margin-bottom: 40px;
-  transition: 0ss;
+  transition: 0.3s;
 }
 
 .darkMode {
