@@ -62,7 +62,7 @@ export default {
 
 .darkMode {
   background: rgb(32, 32, 32);
-  color: white;
+  color: white !important;
 }
 
 body {
