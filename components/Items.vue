@@ -17,13 +17,17 @@
         <option value="oceania">Oceania</option>
       </select>
     </div>
-    <div v-if="selectedCountry === null" class="items__wrap">
+
+    <div v-if="countries" class="items__wrap">
       <Item
         v-for="(country, i) in countries"
         :key="i"
         :country="country"
         @click="showCountryDetails(country)"
       />
+    </div>
+    <div v-else  class="loader">
+      <img src="@/assets/img/loader.gif" alt="" />
     </div>
   </v-container>
 </template>
@@ -52,8 +56,8 @@ export default {
       try {
         const res = await axios.get("https://restcountries.com/v3.1/all");
         this.allcountries = res.data;
-        this.countries = [...this.allcountries];
-        console.log(this.countries); // Copy the data to countries
+        this.countries = [...this.allcountries]; // Copy the data to countries
+        console.log(this.countries);
       } catch (error) {
         console.log(error);
       }
@@ -105,6 +109,11 @@ export default {
 <style>
 .v-input {
   max-width: 400px !important;
+}
+
+.loader {
+  display: flex;
+  justify-content: center;
 }
 
 .items__wrap {
