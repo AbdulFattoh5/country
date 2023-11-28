@@ -148,7 +148,7 @@ select {
     max-width: 150px !important;
     color: white;
   }
-  .header__logo{
+  .header__logo {
     font-size: 20px;
   }
 }

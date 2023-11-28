@@ -16,7 +16,7 @@
             <p class="country__data"><strong>Region: </strong> {{country?.region}}</p>
             <p class="country__data"><strong>Sub Region: </strong> {{country?.subregion}}</p>
             <p class="country__data" v-if="country?.capital"><strong>Capital: </strong> {{country?.capital[0]}}</p>
-            <p class="country__data" v-else><strong>Capital: </strong>N/A</p>
+            <p class="country__data" v-else><strong>Capital: </strong>{{ country?.name?.common }}</p>
           </div>
           <div class="country__data-r">
             <p class="country__data"><strong>Top level domain: </strong> {{country?.tld[0]}}</p>
